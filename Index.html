@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>للمنقبات | متجر النقاب والعبايات</title>
+<meta name="description" content="متجر إلكتروني للمنقبات: نقاب، عبايات، قفازات وإكسسوارات.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Figtree:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3eff8; --card:#ffffff; --fg:#1b1226; --muted:#5d4d74; --line:rgba(42,26,60,.16);
+  --plum:#2a1a3c; --rose:#b3606f; --gold:#a9822f; --on-plum:#efeaf6;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#1d1229; --card:#2a1a3c; --fg:#efeaf6; --muted:#bfb3d1; --line:rgba(239,234,246,.18); --rose:#e3a0ac; --gold:#d9b46c; --plum:#120a1b;}
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.6;
+  font-family:"IBM Plex Sans Arabic","Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+html[lang="en"] body{font-family:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(16px,4vw,36px)}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:62px}
+.logo{font-family:"Amiri",serif;font-size:1.7rem;font-weight:700;color:var(--rose);line-height:1}
+.actions{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:transparent;border-radius:8px;padding:7px 14px;font-size:.92rem}
+.btn.primary{background:var(--plum);color:var(--on-plum);border-color:var(--plum)}
+.btn.primary:disabled{opacity:.5;cursor:not-allowed}
+.count{display:inline-block;min-width:1.4em;text-align:center;background:var(--gold);color:#1b1226;border-radius:99px;font-size:.8rem;padding:0 6px;margin-inline-start:6px}
+
+.hero{padding:clamp(34px,7vw,76px) 0 clamp(20px,4vw,36px)}
+.hero h1{font-family:"Amiri",serif;font-size:clamp(2.6rem,9vw,5.4rem);line-height:1.15;margin:0;color:var(--rose)}
+html[lang="en"] .hero h1{font-family:"Figtree",sans-serif;font-weight:600;font-size:clamp(2rem,6vw,3.6rem)}
+.hero p{max-width:46ch;color:var(--muted);font-size:1.08rem;margin:12px 0 0}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;padding:14px 0 22px}
+.chip{border:1px solid var(--line);background:transparent;border-radius:99px;padding:6px 16px;font-size:.93rem}
+.chip[aria-pressed="true"]{background:var(--plum);color:var(--on-plum);border-color:var(--plum)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;padding-bottom:60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.tile{aspect-ratio:4/5;display:flex;align-items:flex-end;padding:14px;position:relative}
+.tile svg{position:absolute;inset:0;width:100%;height:100%}
+.card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{margin:0;font-size:1.02rem;font-weight:600}
+.card .desc{margin:0;color:var(--muted);font-size:.9rem;flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price{font-weight:600}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 8px;max-width:100%}
+.sample{font-size:.82rem;color:var(--muted);padding-bottom:40px}
+
+.banner{margin-top:20px;border-radius:10px;overflow:hidden;aspect-ratio:21/8;background:var(--card)}
+.banner[hidden]{display:none}
+.banner img{width:100%;height:100%;object-fit:cover;display:block}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.price{font-weight:600}
+.opts select{flex:1;min-width:0}
+.tilewrap{position:relative}
+.nextimg{position:absolute;bottom:10px;inset-inline-end:10px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:1.3rem;line-height:1;padding:0}
+.mscrim{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:20;display:flex;justify-content:center;align-items:flex-start;padding:16px;overflow:auto}
+.mscrim[hidden]{display:none}
+.modal{background:var(--bg);color:var(--fg);width:min(540px,100%);border-radius:14px;overflow:hidden;margin:auto;border:1px solid var(--line)}
+.mimg{position:relative;aspect-ratio:4/5;max-height:62vh;width:100%;background:var(--card)}
+.mpic{position:absolute;inset:0}
+.mpic img,.mpic svg{position:absolute;inset:0;width:100%;height:100%}
+.mpic img{object-fit:contain}
+@media (min-width:760px){
+  .modal{width:min(900px,100%);display:grid;grid-template-columns:1fr 1fr}
+  .mimg{aspect-ratio:auto;max-height:none;height:100%;min-height:min(78vh,620px)}
+}
+.mclose,.marrow{position:absolute;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:1.4rem;line-height:1;padding:0}
+.mclose{top:12px;inset-inline-end:12px}
+.marrow{top:50%;transform:translateY(-50%)}
+.marrow.l{left:12px}.marrow.r{right:12px}
+.mbody{padding:18px 22px 24px;display:flex;flex-direction:column;gap:12px}
+.badge{align-self:flex-start;font-size:.8rem;padding:2px 12px;border-radius:99px;background:var(--plum);color:var(--on-plum)}
+.mname{margin:0;font-size:1.3rem}
+.mprice{font-size:1.25rem;font-weight:600}
+.mdesc{margin:0;color:var(--muted)}
+.mlabel{font-size:.88rem;color:var(--muted);margin-bottom:6px}
+.chips2{display:flex;gap:8px;flex-wrap:wrap}
+.opt{border:1px solid var(--line);background:transparent;border-radius:8px;padding:6px 14px;display:inline-flex;align-items:center;gap:6px}
+.opt[aria-pressed="true"]{background:var(--plum);color:var(--on-plum);border-color:var(--gold)}
+.dot2{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,.5)}
+.qrow{display:flex;align-items:center;gap:12px}
+.qrow .mlabel{margin:0}
+.qb{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;padding:0;font-size:1.1rem}
+.qv{min-width:1.5em;text-align:center;font-weight:600}
+.madd{padding:12px;font-size:1rem}
+/* cart drawer */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.scrim.open{opacity:1;pointer-events:auto}
+aside.cart{position:fixed;top:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:11;
+  display:flex;flex-direction:column;visibility:hidden;transition:transform .25s,visibility 0s .25s;padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}
+html[dir="rtl"] aside.cart{right:0;left:auto;transform:translateX(102%);border-left:1px solid var(--line)}
+html[dir="ltr"] aside.cart{left:0;right:auto;transform:translateX(-102%);border-right:1px solid var(--line)}
+html aside.cart.open{transform:none;visibility:visible;transition:transform .25s,visibility 0s}
+@media (prefers-reduced-motion:reduce){aside.cart,.scrim{transition:none}}
+.cart header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.cart h2{margin:0;font-size:1.15rem}
+.items{flex:1;overflow:auto;padding:8px 20px}
+.item{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.item .meta{color:var(--muted);font-size:.86rem}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);background:transparent;padding:0}
+.empty{color:var(--muted);padding:30px 0;text-align:center}
+.foot{border-top:1px solid var(--line);padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+.foot label{font-size:.88rem;color:var(--muted)}
+.foot input,.foot textarea{width:100%;font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+.total{display:flex;justify-content:space-between;font-weight:600;font-size:1.05rem}
+.note{font-size:.82rem;color:var(--muted);margin:0}
+footer.site{border-top:1px solid var(--line);padding:24px 0 36px;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <span class="logo" id="logo">للمنقبات</span>
+    <div class="actions">
+      <button class="btn" id="langBtn" type="button" aria-label="Switch language">English</button>
+      <button class="btn primary" id="cartBtn" type="button"><span id="cartLbl">السلة</span><span class="count" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="banner" id="banner" hidden></div>
+  <section class="hero">
+    <h1 id="heroT"></h1>
+    <p id="heroP"></p>
+  </section>
+  <div class="filters" id="filters" role="group"></div>
+  <div class="grid" id="grid"></div>
+  <p class="sample" id="sample"></p>
+</main>
+
+<footer class="site"><div class="wrap" id="footT"></div></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="cart" id="cart" aria-label="cart" aria-hidden="true">
+  <header><h2 id="cartT"></h2><button class="btn" id="closeBtn" type="button"></button></header>
+  <div class="items" id="items"></div>
+  <div class="foot">
+    <div class="total"><span id="totLbl"></span><span id="totVal"></span></div>
+    <div><label for="custName" id="nameLbl"></label><input id="custName" autocomplete="name"></div>
+    <div><label for="custAddr" id="addrLbl"></label><textarea id="custAddr" rows="2" autocomplete="street-address"></textarea></div>
+    <button class="btn primary" id="orderBtn" type="button"></button>
+    <p class="note" id="orderNote"></p>
+  </div>
+</aside>
+
+<div class="mscrim" id="modal" hidden></div>
+
+<script>
+/* ===== إعدادات المتجر: عدّلي هنا ===== */
+var CONFIG = {
+  whatsapp: "",                       // رقم واتساب بصيغة دولية بدون + أو أصفار، مثال: "212600000000"
+  currency: { ar: "DH", en: "DH" },
+  banner: ""                          // صورة الراية أعلى الصفحة، مثال: "images/banner.jpg"
+};
+
+/* الألوان المتاحة: أضيفي أو عدّلي */
+var COLORS = {
+  black:{ar:"أسود",       en:"Black",      hex:"#241a30"},
+  navy: {ar:"كحلي",       en:"Navy",       hex:"#2f3d5c"},
+  brown:{ar:"بني",        en:"Brown",      hex:"#5b4636"},
+  green:{ar:"أخضر داكن",  en:"Dark green", hex:"#335c52"},
+  plum: {ar:"برقوقي",     en:"Plum",       hex:"#6a3c5a"}
+};
+
+/* ===== المنتجات: سطر واحد لكل منتج =====
+   ar / en : الاسم     price : السعر     old : السعر القديم (أو null)
+   images  : مسارات الصور ['images/a1.jpg','images/a1b.jpg'] أو [] (الضغط على الصورة يبدّل بينها)
+   dAr / dEn : الوصف   (المقاسات والألوان في OPTIONS أعلاه) */
+var CATCOL = {niqab:'#3b2654', abaya:'#6a3c5a', acc:'#7a5a3a'};
+
+/* ===== المقاسات والألوان لكل منتج حسب الـ ID =====
+   sizes  : مقاسات هذا المنتج، مثل ['S','M','L'] أو ['38','40']  (اتركيها [] لإخفاء المقاس)
+   colors : ألوانه من COLORS (black, navy, brown, green, plum)     (اتركيها [] لإخفاء اللون) */
+var OPTIONS = {
+  n1: { sizes:['M','L'],            colors:['black','navy'] },
+  n2: { sizes:['S','M','L'],        colors:['black','brown'] },
+  n3: { sizes:['M','L','XL'],       colors:['black','navy','brown'] },
+  a1: { sizes:['S','M','L','XL'],   colors:['black','navy','brown','green','plum'] },
+  a2: { sizes:['S','M','L','XL'],   colors:['black','navy','brown'] },
+  g1: { sizes:['M','L'],            colors:['black','navy','plum'] },
+  g2: { sizes:['S','M','L'],        colors:['black','brown','green'] },
+  g3: { sizes:['S','L'],            colors:['black','navy','brown','green','plum'] }
+};
+
+var PRODUCTS = [
+  {id:'n1',cat:'niqab',ar:'نقاب ثلاث طبقات',en:'Three-layer niqab',price:12,old:null,images:['https://i.pinimg.com/1200x/49/84/45/4984453bafe8cf9ca82f2c9b3a0c6ae9.jpg' , 'https://i.pinimg.com/1200x/95/34/e6/9534e62517b722c20ce8729e371ba884.jpg' , 'https://i.pinimg.com/1200x/a9/17/50/a91750df715052a996fd448b21d50e26.jpg'],dAr:'قماش خفيف يسمح بالتنفس، بربطة خلفية مريحة.',dEn:'Light, breathable fabric with a comfortable back tie.'},
+  {id:'n2',cat:'niqab',ar:'نقاب بطبقة واحدة',en:'Single-layer niqab',price:9,old:null,images:['https://i.pinimg.com/736x/53/89/f2/5389f21804664b9b64de5becb2bc14a3.jpg'],dAr:'للاستخدام اليومي في الطقس الحار.',dEn:'For everyday wear in warm weather.'},
+  {id:'n3',cat:'niqab',ar:'نقاب بحزام مرن',en:'Elastic-band niqab',price:15,old:18,images:['https://i.pinimg.com/736x/d3/7d/fa/d37dfa74f67e87a2878a1a76ab319abf.jpg' , 'https://i.pinimg.com/736x/a2/97/21/a297212312b6856f108de6c78bf22b7e.jpg'],dAr:'ثبات جيد دون ربط، مناسب للحركة.',dEn:'Stays in place without tying. Good for movement.'},
+  {id:'a1',cat:'abaya',ar:'عباية يومية مفتوحة',en:'Open everyday abaya',price:45,old:null,images:['https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/57/387166/1.jpg?0885' , 'https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/45/492266/1.jpg?2627'],dAr:'قصة واسعة وقماش ناعم لا يلتصق.',dEn:'Relaxed cut in a soft, non-clingy fabric.'},
+  {id:'a2',cat:'abaya',ar:'عباية مغلقة بأكمام واسعة',en:'Closed abaya, wide sleeves',price:58,old:70,images:['https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/82/687176/2.jpg?9157'],dAr:'مناسبة للخروج والعمل، بجيوب جانبية.',dEn:'Suits work and outings, with side pockets.'},
+  {id:'g1',cat:'acc',ar:'قفازات قطنية',en:'Cotton gloves',price:7,old:null,images:['https://i.pinimg.com/1200x/0a/0a/ec/0a0aeccb18e14e427d74fb7dca66319f.jpg' , 'https://i.pinimg.com/736x/f6/10/89/f61089f2dde681c89c102deb5bd80a93.jpg'],dAr:'قطن ناعم بلمس مريح للجلد.',dEn:'Soft cotton, gentle on the skin.'},
+  {id:'g1',cat:'acc',ar:'قفازات قطنية',en:'Cotton gloves',price:7,old:null,images:['https://i.pinimg.com/1200x/da/2c/46/da2c46a1d2f609b34e124eebe557d503.jpg','https://i.pinimg.com/1200x/52/fd/ed/52fded0cefa55cd1202829a806fb39bf.jpg','https://i.pinimg.com/1200x/b8/43/9b/b8439b690152cbaf833bc4866de23b1c.jpg','https://i.pinimg.com/736x/c6/8a/64/c68a6413cf62155626a0bf7cea64f7a0.jpg'],dAr:'قطن ناعم بلمس مريح للجلد.',dEn:'Soft cotton, gentle on the skin.'},
+  {id:'g2',cat:'acc',ar:'أكمام داخلية',en:'Inner sleeves',price:8,old:null,images:['https://i.pinimg.com/736x/20/91/29/20912905851eb674eb8bf9ebf3d96976.jpg','https://i.pinimg.com/736x/e1/14/e7/e114e7d7c6966eeb5c54919c494caff2.jpg','https://i.pinimg.com/736x/d4/32/d4/d432d41dd5f3f6e9edb64ffd202bd2b3.jpg'],dAr:'تُلبس تحت العباية لتغطية إضافية.',dEn:'Worn under the abaya for extra coverage.'},
+  {id:'g3',cat:'acc',ar:'دبابيس حجاب',en:'Hijab pins',price:6,old:null,images:['https://i.pinimg.com/1200x/86/2c/4b/862c4bcca965489c9f3606245a8994e2.jpg','https://i.pinimg.com/736x/d4/aa/4c/d4aa4cf3ebb74252690c63d515c27ef4.jpg'],dAr:'عبوة من 12 دبوسًا.',dEn:'Pack of 12 pins.'},
+  {id: 'g4',cat:'acc',ar:' الغشوة ',en:'Abaya waist belt',price:10,old:null,images:['https://i.pinimg.com/1200x/45/a1/01/45a10132fc0d56fdd876ac2bbd1045b0.jpg','https://i.pinimg.com/1200x/87/d6/a6/87d6a691db5fb43a2a870a08c90ba0ee.jpg','https://i.pinimg.com/736x/af/0c/08/af0c084bfcf734229d3957f1c59b598a.jpg','https://i.pinimg.com/1200x/45/a1/01/45a10132fc0d56fdd876ac2bbd1045b0.jpg'],dAr:'حزام مطاطي لتحديد الخصر.',dEn:'Elastic belt to cinch the waist.'},
+];
+PRODUCTS.forEach(function(p){ var o=OPTIONS[p.id]||{}; p.sizes=o.sizes||[]; p.colors=o.colors||[]; });
+
+var T = {
+  ar:{dir:"rtl", lang:"English", cart:"السلة", close:"إغلاق",
+    heroT:"كل ما تحتاجينه في مكان واحد", heroP:"نقاب، عبايات وإكسسوارات مختارة للراحة والستر.",
+    all:"الكل", niqab:"النقاب", abaya:"العبايات", acc:"إكسسوارات",
+    add:"أضيفي للسلة", qty:"الكمية", size:"المقاس", color:"اللون",
+    cartT:"سلة المشتريات", empty:"السلة فارغة.", total:"المجموع", name:"الاسم", addr:"العنوان",
+    order:"إرسال الطلب عبر واتساب",
+    note:"ندفع عند الاستلام. سنؤكد الطلب والتوصيل معك عبر واتساب.",
+    sample:"المنتجات والأسعار المعروضة نماذج، وسيتم تعديلها قبل الافتتاح.",
+    foot:"للمنقبات. جميع الحقوق محفوظة.", remove:"حذف",
+    msgHead:"طلب جديد:", msgTot:"المجموع", msgName:"الاسم", msgAddr:"العنوان", sz:"المقاس"},
+  en:{dir:"ltr", lang:"العربية", cart:"Cart", close:"Close",
+    heroT:"Everything you need, in one place", heroP:"Niqab, abayas and accessories chosen for comfort and modesty.",
+    all:"All", niqab:"Niqab", abaya:"Abayas", acc:"Accessories",
+    add:"Add to cart", qty:"Quantity", size:"Size", color:"Color",
+    cartT:"Your cart", empty:"Your cart is empty.", total:"Total", name:"Name", addr:"Address",
+    order:"Send order on WhatsApp",
+    note:"Payment on delivery. We'll confirm the order and delivery with you on WhatsApp.",
+    sample:"Products and prices shown are samples and will change before launch.",
+    foot:"للمنقبات. All rights reserved.", remove:"Remove",
+    msgHead:"New order:", msgTot:"Total", msgName:"Name", msgAddr:"Address", sz:"Size"}
+};
+
+var lang = "ar", cat = "all", cart = [];
+var $ = function(id){return document.getElementById(id)};
+function t(k){return T[lang][k]}
+function money(n){return n.toFixed(2).replace(/\.00$/,"") + " " + CONFIG.currency[lang]}
+
+try{ var sv = localStorage.getItem("munaqqabat_cart2"); if(sv) cart = JSON.parse(sv) || []; var sl = localStorage.getItem("munaqqabat_lang"); if(sl==="en"||sl==="ar") lang = sl; }catch(e){}
+function save(){ try{ localStorage.setItem("munaqqabat_cart2", JSON.stringify(cart)); localStorage.setItem("munaqqabat_lang", lang); }catch(e){} }
+
+function el(tag, cls, text){ var n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
+function pname(p){ return lang==="ar" ? p.ar : p.en; }
+function pdesc(p){ return lang==="ar" ? p.dAr : p.dEn; }
+function cname(k){ return COLORS[k] ? COLORS[k][lang] : k; }
+function variant(i){
+  var a=[]; if(i.size) a.push(t("sz")+": "+i.size); if(i.color) a.push(cname(i.color));
+  return a.join(" · ");
+}
+
+function shapeSvg(color, c){
+  var ns="http://www.w3.org/2000/svg", s=document.createElementNS(ns,"svg");
+  s.setAttribute("viewBox","0 0 100 125"); s.setAttribute("preserveAspectRatio","xMidYMid slice"); s.setAttribute("aria-hidden","true");
+  var r=document.createElementNS(ns,"rect"); r.setAttribute("width","100"); r.setAttribute("height","125"); r.setAttribute("fill",color); s.appendChild(r);
+  var p=document.createElementNS(ns,"path"); p.setAttribute("fill","rgba(255,255,255,.14)");
+  if(c==="niqab") p.setAttribute("d","M50 22c-14 0-24 10-24 26 0 12 6 22 14 30l10 8 10-8c8-8 14-18 14-30 0-16-10-26-24-26z");
+  else if(c==="abaya") p.setAttribute("d","M50 18c-8 0-14 6-14 14l-18 70h25l7-30 7 30h25l-18-70c0-8-6-14-14-14z");
+  else p.setAttribute("d","M50 40a22 22 0 1 0 .1 0zM50 52a10 10 0 1 1-.1 0z");
+  s.appendChild(p); return s;
+}
+function drawTile(tile, p, colorKey, idx){
+  tile.textContent="";
+  var col = (p.colors.length>1 && COLORS[colorKey]) ? COLORS[colorKey].hex : CATCOL[p.cat];
+  var src = p.images && p.images[idx||0];
+  if(src){
+    var im=el("img"); im.src=src; im.alt=pname(p); im.loading="lazy";
+    im.onerror=function(){ tile.textContent=""; tile.appendChild(shapeSvg(col,p.cat)); };
+    tile.appendChild(im);
+  } else tile.appendChild(shapeSvg(col,p.cat));
+}
+
+function renderStatic(){
+  var d=T[lang];
+  document.documentElement.lang=lang; document.documentElement.dir=d.dir;
+  $("langBtn").textContent=d.lang; $("cartLbl").textContent=d.cart; $("closeBtn").textContent=d.close;
+  $("heroT").textContent=d.heroT; $("heroP").textContent=d.heroP; $("sample").textContent=d.sample; $("footT").textContent=d.foot;
+  $("cartT").textContent=d.cartT; $("totLbl").textContent=d.total; $("nameLbl").textContent=d.name; $("addrLbl").textContent=d.addr;
+  $("orderBtn").textContent=d.order; $("orderNote").textContent=d.note;
+  document.title = lang==="ar" ? "للمنقبات | متجر النقاب والعبايات" : "للمنقبات | Niqab and abaya shop";
+}
+
+function renderFilters(){
+  var box=$("filters"); box.textContent="";
+  ["all","niqab","abaya","acc"].forEach(function(k){
+    var b=el("button","chip",t(k)); b.type="button"; b.setAttribute("aria-pressed", String(cat===k));
+    b.onclick=function(){cat=k; renderFilters(); renderGrid();}; box.appendChild(b);
+  });
+}
+
+function renderGrid(){
+  var g=$("grid"); g.textContent="";
+  PRODUCTS.filter(function(p){return cat==="all"||p.cat===cat}).forEach(function(p){
+    var c=el("article","card");
+    var tile=el("div","tile"), imgIdx=0, curColor=p.colors[0];
+    drawTile(tile,p,curColor,0);
+    tile.style.cursor="pointer"; tile.tabIndex=0; tile.setAttribute("role","button"); tile.setAttribute("aria-label",pname(p));
+    tile.onclick=function(){ openModal(p); };
+    tile.onkeydown=function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openModal(p); } };
+    c.appendChild(tile);
+    var b=el("div","body"); b.appendChild(el("h3",null,pname(p))); b.appendChild(el("p","desc",pdesc(p)));
+    var pr=el("div","price",money(p.price));
+    if(p.old){ var o=el("s","old",money(p.old)); o.style.cssText="color:var(--muted);font-weight:400;margin-inline-start:8px"; pr.appendChild(o); }
+    b.appendChild(pr);
+    var opts=el("div","opts"), sizeSel=null, colorSel=null;
+    if(p.sizes.length){
+      sizeSel=el("select"); sizeSel.setAttribute("aria-label", t("size"));
+      p.sizes.forEach(function(o){var op=el("option",null,o); op.value=o; sizeSel.appendChild(op);});
+      opts.appendChild(sizeSel);
+    }
+    if(p.colors.length){
+      colorSel=el("select"); colorSel.setAttribute("aria-label", t("color"));
+      p.colors.forEach(function(k){var op=el("option",null,cname(k)); op.value=k; colorSel.appendChild(op);});
+      colorSel.onchange=function(){ curColor=colorSel.value; drawTile(tile,p,curColor,imgIdx); };
+      opts.appendChild(colorSel);
+    }
+    if(opts.children.length) b.appendChild(opts);
+    var add=el("button","btn primary",t("add")); add.type="button";
+    add.onclick=function(){addToCart(p.id, sizeSel?sizeSel.value:"", colorSel?colorSel.value:"")}; b.appendChild(add);
+    c.appendChild(b); g.appendChild(c);
+  });
+}
+
+function addToCart(id,size,color,qty){
+  qty=qty||1;
+  var f=cart.filter(function(i){return i.id===id&&i.size===size&&i.color===color})[0];
+  if(f) f.q+=qty; else cart.push({id:id,size:size,color:color,q:qty});
+  save(); renderCart(); openCart();
+}
+function findP(id){return PRODUCTS.filter(function(p){return p.id===id})[0]}
+function total(){return cart.reduce(function(s,i){var p=findP(i.id);return s+(p?p.price*i.q:0)},0)}
+
+function renderCart(){
+  var box=$("items"); box.textContent="";
+  cart=cart.filter(function(i){return findP(i.id)});
+  var n=cart.reduce(function(s,i){return s+i.q},0); $("cartCount").textContent=n;
+  if(!cart.length){ box.appendChild(el("p","empty",t("empty"))); }
+  cart.forEach(function(i,idx){
+    var p=findP(i.id);
+    var r=el("div","item");
+    var l=el("div"); l.appendChild(el("div",null,pname(p)));
+    var v=variant(i); l.appendChild(el("div","meta",(v?v+" · ":"")+money(p.price)));
+    r.appendChild(l); r.appendChild(el("div","price",money(p.price*i.q)));
+    var q=el("div","qty");
+    var m=el("button",null,"−"); m.type="button"; m.setAttribute("aria-label","−"); m.onclick=function(){i.q--; if(i.q<=0) cart.splice(idx,1); save(); renderCart();};
+    var pl=el("button",null,"+"); pl.type="button"; pl.setAttribute("aria-label","+"); pl.onclick=function(){i.q++; save(); renderCart();};
+    q.appendChild(m); q.appendChild(el("span",null,String(i.q))); q.appendChild(pl); r.appendChild(q);
+    var rm=el("button","btn",t("remove")); rm.type="button"; rm.onclick=function(){cart.splice(idx,1); save(); renderCart();};
+    r.appendChild(rm); box.appendChild(r);
+  });
+  $("totVal").textContent=money(total());
+  $("orderBtn").disabled=!cart.length;
+}
+
+function openCart(){ $("cart").classList.add("open"); $("scrim").classList.add("open"); $("cart").setAttribute("aria-hidden","false"); }
+function closeCart(){ $("cart").classList.remove("open"); $("scrim").classList.remove("open"); $("cart").setAttribute("aria-hidden","true"); }
+
+$("cartBtn").onclick=openCart; $("closeBtn").onclick=closeCart; $("scrim").onclick=closeCart;
+document.addEventListener("keydown",function(e){ if(e.key==="Escape"){ closeModal(); closeCart(); } });
+$("langBtn").onclick=function(){ closeModal(); lang = lang==="ar" ? "en" : "ar"; save(); renderAll(); };
+
+$("orderBtn").onclick=function(){
+  if(!cart.length) return;
+  var lines=[t("msgHead")];
+  cart.forEach(function(i){var p=findP(i.id); if(p){ var v=variant(i); lines.push("- "+pname(p)+(v?" ("+v+")":"")+" x"+i.q+" = "+money(p.price*i.q)); }});
+  lines.push(t("msgTot")+": "+money(total()));
+  var nm=$("custName").value.trim(), ad=$("custAddr").value.trim();
+  if(nm) lines.push(t("msgName")+": "+nm);
+  if(ad) lines.push(t("msgAddr")+": "+ad);
+  var base = CONFIG.whatsapp ? "https://wa.me/"+CONFIG.whatsapp : "https://wa.me/";
+  window.open(base+"?text="+encodeURIComponent(lines.join("\n")), "_blank", "noopener");
+};
+
+var lastFocus=null;
+function closeModal(){
+  var m=$("modal"); if(m.hidden) return;
+  m.hidden=true; m.textContent=""; document.body.style.overflow="";
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+function openModal(p){
+  lastFocus=document.activeElement;
+  var st={idx:0,size:p.sizes[0]||"",color:p.colors[0]||"",qty:1};
+  var m=$("modal"); m.textContent="";
+  var box=el("div","modal"); box.setAttribute("role","dialog"); box.setAttribute("aria-modal","true"); box.setAttribute("aria-label",pname(p));
+  var pic=el("div","mimg"), face=el("div","mpic"); pic.appendChild(face);
+  function paint(){
+    drawTile(face,p,st.color,st.idx);
+    var has=!!(p.images && p.images[st.idx]);
+    face.style.cursor=has?"zoom-in":"default";
+    face.title=has?(lang==="ar"?"فتح الصورة في تبويب جديد":"Open image in a new tab"):"";
+  }
+  face.onclick=function(){ if(p.images && p.images[st.idx]) window.open(p.images[st.idx],"_blank","noopener"); };
+  var close=el("button","mclose","×"); close.type="button"; close.setAttribute("aria-label",t("close")); close.onclick=closeModal; pic.appendChild(close);
+  if(p.images && p.images.length>1){
+    var n=p.images.length, pv=el("button","marrow l","‹"), nx=el("button","marrow r","›");
+    pv.type="button"; nx.type="button";
+    pv.setAttribute("aria-label","<"); nx.setAttribute("aria-label",">");
+    pv.onclick=function(){ st.idx=(st.idx-1+n)%n; paint(); };
+    nx.onclick=function(){ st.idx=(st.idx+1)%n; paint(); };
+    pic.appendChild(pv); pic.appendChild(nx);
+  }
+  box.appendChild(pic);
+  var body=el("div","mbody");
+  body.appendChild(el("span","badge",t(p.cat)));
+  body.appendChild(el("h2","mname",pname(p)));
+  var pr=el("div","mprice",money(p.price));
+  if(p.old){ var o=el("s","old",money(p.old)); o.style.cssText="color:var(--muted);font-weight:400;font-size:1rem;margin-inline-start:10px"; pr.appendChild(o); }
+  body.appendChild(pr);
+  body.appendChild(el("p","mdesc",pdesc(p)));
+  function group(label,list,text,key){
+    var g=el("div","mgroup"); g.appendChild(el("div","mlabel",label));
+    var row=el("div","chips2");
+    list.forEach(function(v){
+      var b=el("button","opt"); b.type="button";
+      if(key==="color" && COLORS[v]){ var d=el("span","dot2"); d.style.background=COLORS[v].hex; b.appendChild(d); }
+      b.appendChild(document.createTextNode(text(v)));
+      b.setAttribute("aria-pressed",String(st[key]===v));
+      b.onclick=function(){
+        st[key]=v;
+        Array.prototype.forEach.call(row.children,function(x,i){ x.setAttribute("aria-pressed",String(list[i]===v)); });
+        if(key==="color") paint();
+      };
+      row.appendChild(b);
+    });
+    g.appendChild(row); body.appendChild(g);
+  }
+  if(p.sizes.length) group(t("size"),p.sizes,function(v){return v},"size");
+  if(p.colors.length) group(t("color"),p.colors,cname,"color");
+  var qg=el("div","mgroup qrow"); qg.appendChild(el("div","mlabel",t("qty")));
+  var qm=el("button","qb","−"), qv=el("span","qv","1"), qp=el("button","qb","+");
+  qm.type="button"; qp.type="button"; qm.setAttribute("aria-label","−"); qp.setAttribute("aria-label","+");
+  qm.onclick=function(){ if(st.qty>1){ st.qty--; qv.textContent=st.qty; } };
+  qp.onclick=function(){ if(st.qty<20){ st.qty++; qv.textContent=st.qty; } };
+  qg.appendChild(qm); qg.appendChild(qv); qg.appendChild(qp); body.appendChild(qg);
+  var add=el("button","btn primary madd",t("add")); add.type="button";
+  add.onclick=function(){ closeModal(); addToCart(p.id,st.size,st.color,st.qty); };
+  body.appendChild(add); box.appendChild(body); m.appendChild(box);
+  m.hidden=false; document.body.style.overflow="hidden"; paint(); close.focus();
+}
+$("modal").onclick=function(e){ if(e.target===$("modal")) closeModal(); };
+
+(function(){
+  if(!CONFIG.banner) return;
+  var b=$("banner"), im=el("img"); im.src=CONFIG.banner; im.alt="";
+  im.onerror=function(){ b.hidden=true; };
+  b.appendChild(im); b.hidden=false;
+})();
+
+function renderAll(){ renderStatic(); renderFilters(); renderGrid(); renderCart(); }
+renderAll();
+</script>
+</body>
+</html>
